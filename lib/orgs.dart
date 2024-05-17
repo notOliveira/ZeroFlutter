@@ -13,69 +13,75 @@ class _OrgsScreenState extends State<OrgsScreen> {
       appBar: AppBar(
         title: Text('Orgs'),
       ),
-      body: Stack(
-        children: <Widget>[
-          // Imagem de fundo
-          
-          SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'Minhas organizações',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 45,
-                    ),
-                  ),
-                  SizedBox(height: 20.0),
-                  GridView.count(
-                    crossAxisCount: 3,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 16.0,
-                    children: List.generate(6, (index) {
-                      return Card(
-                        color: Colors.white,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            Expanded(
-                              child: Image.asset(
-                                'assets/org.png',
-                                width: 400.0,
-                              ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Minhas organizações',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 45,
+                ),
+              ),
+              SizedBox(height: 20.0),
+              GridView.count(
+                crossAxisCount: 3,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                children: List.generate(6, (index) {
+                  return Container(
+                    width: 300.0,
+                    height: 300.0,
+                    child: Card(
+                      color: Color.fromRGBO(255, 248, 232, 1),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Expanded(
+                            child: Image.asset(
+                              'assets/org.png',
+                              fit: BoxFit.contain,
+                              width: 400,
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Text(
-                                'Organização ${index + 1}',
-                                style: TextStyle(
-                                  fontSize: 30.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                                textAlign: TextAlign.center,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(7.0),
+                            child: Text(
+                              'Organização ${index + 1}',
+                              style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
                               ),
+                              textAlign: TextAlign.center,
                             ),
-                            ElevatedButton(
+                          ),
+                          Container(
+                            width: double.infinity,
+                            height: 50.0,
+                            child: ElevatedButton(
                               onPressed: () {
                                 // Ação do botão Visualizar
                               },
-                              child: Text('Visualizar'),
+                              child: Text('Visualizar', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Color.fromRGBO(248, 175, 31, 1),
+                              ),
                             ),
-                          ],
-                        ),
-                      );
-                    }),
-                  ),
-                ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
