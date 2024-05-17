@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class CadastroScreen extends StatefulWidget {
@@ -31,191 +33,231 @@ class _CadastroScreenState extends State<CadastroScreen> {
               height: MediaQuery.of(context).size.height,
             ),
           ),
-          Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.4,
-              padding: EdgeInsets.all(32.0),
-              margin: EdgeInsets.all(32.0),
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Text(
-                    'Registrar-se',
-                    style: TextStyle(
-                      fontSize: 24.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+          SingleChildScrollView(
+            child: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.4,
+                padding: EdgeInsets.all(32.0),
+                margin: EdgeInsets.all(32.0),
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 1),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Text(
+                      'Registrar-se',
+                      style: TextStyle(
+                        fontSize: 24.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 20.0),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              'Nome',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                            ),
-                            SizedBox(height: 8.0),
-                            TextFormField(
-                              controller: _nomeController,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                                hintText: 'Fulano',
-                                hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                                filled: true, // Define se o campo deve ser preenchido
-                                fillColor: Color.fromRGBO(240, 248, 255, 1),
+                    SizedBox(height: 20.0),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                'Nome',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold, 
+                                  color: Color.fromRGBO(248, 175, 31, 1), 
+                                  fontSize: 20,
+                                ),
                               ),
-                              style: TextStyle( // Adicionando estilo ao texto do campo
-                                color: Colors.black,
-                                fontSize: 16.0
+                              SizedBox(height: 8.0),
+                              TextFormField(
+                                controller: _nomeController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                                  hintText: 'Fulano',
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                                  filled: true, // Define se o campo deve ser preenchido
+                                  fillColor: Color.fromRGBO(240, 248, 255, 1),
+                                ),
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16.0,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(width: 20.0),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              'Sobrenome',
-                              style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                            ),
-                            SizedBox(height: 8.0),
-                            TextFormField(
-                              controller: _sobrenomeController,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                                hintText: 'Silva',
-                                hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                                filled: true, // Define se o campo deve ser preenchido
-                                fillColor: Color.fromRGBO(240, 248, 255, 1),
+                        SizedBox(width: 20.0),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                'Sobrenome',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold, 
+                                  color: Color.fromRGBO(248, 175, 31, 1), 
+                                  fontSize: 20,
+                                ),
                               ),
-                            ),
-                          ],
+                              SizedBox(height: 8.0),
+                              TextFormField(
+                                controller: _sobrenomeController,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                                  hintText: 'Silva',
+                                  hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                                  filled: true, // Define se o campo deve ser preenchido
+                                  fillColor: Color.fromRGBO(240, 248, 255, 1),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Email',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                      ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                          hintText: 'fulano@email.com',
-                          hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                          filled: true, // Define se o campo deve ser preenchido
-                          fillColor: Color.fromRGBO(240, 248, 255, 1),
-                          
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Email',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, 
+                            color: Color.fromRGBO(248, 175, 31, 1), 
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'CEP',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                      ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        controller: _cepController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                          hintText: '00000-000',
-                          hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                          filled: true, // Define se o campo deve ser preenchido
-                          fillColor: Color.fromRGBO(240, 248, 255, 1),
+                        SizedBox(height: 8.0),
+                        TextFormField(
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                            hintText: 'fulano@email.com',
+                            hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                            filled: true, // Define se o campo deve ser preenchido
+                            fillColor: Color.fromRGBO(240, 248, 255, 1),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Senha',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                      ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        controller: _senhaController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                          hintText: 'Sua senha aqui',
-                          hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                          filled: true, // Define se o campo deve ser preenchido
-                          fillColor: Color.fromRGBO(240, 248, 255, 1),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'CEP',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, 
+                            color: Color.fromRGBO(248, 175, 31, 1), 
+                            fontSize: 20,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 20.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Repita a senha',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromRGBO(248, 175, 31, 1), fontSize: 20),
-                      ),
-                      SizedBox(height: 8.0),
-                      TextFormField(
-                        controller: _repitasenhaController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(),
-                          contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
-                          hintText: 'Repita a senha acima',
-                          hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
-                          filled: true, // Define se o campo deve ser preenchido
-                          fillColor: Color.fromRGBO(240, 248, 255, 1),
+                        SizedBox(height: 8.0),
+                        TextFormField(
+                          controller: _cepController,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                            hintText: '00000-000',
+                            hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                            filled: true, // Define se o campo deve ser preenchido
+                            fillColor: Color.fromRGBO(240, 248, 255, 1),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 40.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      _cadastrar();
-                    },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 12.0),
-                      child: Text(
-                        'Cadastrar',
-                        style: TextStyle(fontSize: 18.0),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Senha',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, 
+                            color: Color.fromRGBO(248, 175, 31, 1), 
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 8.0),
+                        TextFormField(
+                          controller: _senhaController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                            hintText: 'Sua senha aqui',
+                            hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                            filled: true, // Define se o campo deve ser preenchido
+                            fillColor: Color.fromRGBO(240, 248, 255, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'Utilize senhas com 8 dígitos ou mais, envolvendo números e letras',
+                      style: TextStyle(
+                        color: Color.fromRGBO(248, 175, 31, 1), 
+                        fontSize: 16,
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Repita a senha',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, 
+                            color: Color.fromRGBO(248, 175, 31, 1), 
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 8.0),
+                        TextFormField(
+                          controller: _repitasenhaController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 12.0),
+                            hintText: 'Repita a senha acima',
+                            hintStyle: TextStyle(color: Color.fromARGB(255, 20, 20, 20)),
+                            filled: true, // Define se o campo deve ser preenchido
+                            fillColor: Color.fromRGBO(240, 248, 255, 1),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20.0),
+                    Text(
+                      'Já possui cadastro? Clique aqui para entrar',
+                      style: TextStyle(
+                        color: Color.fromRGBO(61, 60, 57, 1), 
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(height: 40.0),
+                    ElevatedButton(
+                      onPressed: () {
+                        _cadastrar();
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 12.0),
+                        child: Text(
+                          'Cadastrar',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
