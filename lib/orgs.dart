@@ -60,6 +60,7 @@ class _OrgsScreenState extends State<OrgsScreen> {
                               textAlign: TextAlign.center,
                             ),
                           ),
+                          // Este botão é para cada card de organização
                           Container(
                             width: double.infinity,
                             height: 50.0,
@@ -78,6 +79,22 @@ class _OrgsScreenState extends State<OrgsScreen> {
                     ),
                   );
                 }),
+              ),
+              SizedBox(height: 50.0),
+              // Este é o botão para criar uma nova organização
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      // Ação do botão de criar organização
+                    },
+                    child: Text('+ Criar organização', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
