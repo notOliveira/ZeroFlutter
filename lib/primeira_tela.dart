@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'segunda_tela.dart';
 import 'register.dart';
+import 'orgs.dart';
 
 enum Menu { itemUm }
 
@@ -47,7 +48,17 @@ class Primeira extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => CadastroScreen()));
             },
-          )
+          ),
+          SizedBox(height: 30.0),
+          ElevatedButton(
+            child: Text('Abrir Orgs'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrgsScreen()));
+            },
+          ),
         ]),
       ),
     );
