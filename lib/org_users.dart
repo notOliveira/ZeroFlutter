@@ -61,7 +61,7 @@ class _OrgUsersScreen extends State<OrgUsersScreen> {
                   Text(
                     'Todos os usuários da organização',
                     style: TextStyle(
-                      fontSize: 30.0,
+                      fontSize: 40.0,
                       fontWeight: FontWeight.bold,
                     ),
                     textAlign: TextAlign.center,
@@ -83,10 +83,57 @@ class _OrgUsersScreen extends State<OrgUsersScreen> {
                       ),
                     ),
                   ),
+                  SizedBox(height: 50.0),
+                  Container(
+                    width: double.infinity,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Gustavo Oliveira (Admin)',
+                                style: TextStyle(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromRGBO(248, 175, 31, 1),
+                                ),
+                              ),
+                              Text(
+                                'gustavo.oliveira191@fatec.sp.gov.br',
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            ],
+                          ),
+                          ElevatedButton(
+                            onPressed: () {
+                              // Ação do botão "Sair da organização"
+                            },
+                            child: Text('Sair da organização', style: TextStyle(fontSize: 16.0, color: Colors.white)),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.red,
+                              textStyle: TextStyle(fontSize: 16.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  
                 ],
               ),
             ),
-            SizedBox(height: 50.0),
           ],
         ),
       ),
