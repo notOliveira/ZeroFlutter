@@ -15,7 +15,8 @@ class _OrgsScreenState extends State<OrgsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          // margin left and right 200
+          padding: const EdgeInsets.symmetric(horizontal: 200.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -24,15 +25,17 @@ class _OrgsScreenState extends State<OrgsScreen> {
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 45,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'helvetica_neue_light',
                 ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 50.0),
               GridView.count(
                 crossAxisCount: 3,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                crossAxisSpacing: 16.0,
-                mainAxisSpacing: 16.0,
+                crossAxisSpacing: 50.0,
+                mainAxisSpacing: 50.0,
                 children: List.generate(6, (index) {
                   return Container(
                     width: 300.0,
@@ -50,11 +53,11 @@ class _OrgsScreenState extends State<OrgsScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(7.0),
+                            padding: const EdgeInsets.all(30.0),
                             child: Text(
                               'Organização ${index + 1}',
                               style: TextStyle(
-                                fontSize: 24.0,
+                                fontSize: 23.0,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
@@ -92,10 +95,12 @@ class _OrgsScreenState extends State<OrgsScreen> {
                     child: Text('+ Criar organização', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
+                      padding: const EdgeInsets.all(20.0),
                     ),
                   ),
                 ],
               ),
+              SizedBox(height: 50.0),
             ],
           ),
         ),
