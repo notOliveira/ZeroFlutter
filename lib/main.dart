@@ -3,6 +3,7 @@ import 'primeira_tela.dart';
 import 'segunda_tela.dart';
 import 'register.dart';
 import 'orgs.dart';
+import 'org_users.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         "/segunda_tela": (context) => Segunda("a barra de pesquisa"),
         "/register": (context) => CadastroScreen(),
         "/orgs": (context) => OrgsScreen(),
+        "/orgs/users": (context) => OrgUsersScreen(),
         
       },
       title: 'Flutter Demo',

@@ -1,3 +1,4 @@
+import 'package:app/org_users.dart';
 import 'package:flutter/material.dart';
 import 'segunda_tela.dart';
 import 'register.dart';
@@ -59,6 +60,16 @@ class Primeira extends StatelessWidget {
                       builder: (context) => OrgsScreen()));
             },
           ),
+          SizedBox(height: 30.0),
+          ElevatedButton(
+            child: Text('Abrir Users'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => OrgUsersScreen()));
+            },
+          )
         ]),
       ),
     );
