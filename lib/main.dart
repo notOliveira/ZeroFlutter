@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'primeira_tela.dart';
 import 'segunda_tela.dart';
 import 'register.dart';
 import 'orgs.dart';
 import 'org_users.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -22,7 +25,6 @@ class MyApp extends StatelessWidget {
         "/register": (context) => CadastroScreen(),
         "/orgs": (context) => OrgsScreen(),
         "/orgs/users": (context) => OrgUsersScreen(),
-        
       },
       title: 'Flutter Demo',
       theme: ThemeData.light(),
