@@ -1,5 +1,8 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:app/models/Organization.dart';
+import 'package:app/services/organization_service.dart';
+import 'package:app/create_org_screen.dart';
 
 class OrgsScreen extends StatefulWidget {
   @override
@@ -7,6 +10,8 @@ class OrgsScreen extends StatefulWidget {
 }
 
 class _OrgsScreenState extends State<OrgsScreen> {
+  final OrganizationService _organizationService = OrganizationService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +20,6 @@ class _OrgsScreenState extends State<OrgsScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          // margin left and right 200
           padding: const EdgeInsets.symmetric(horizontal: 200.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -30,67 +34,83 @@ class _OrgsScreenState extends State<OrgsScreen> {
                 ),
               ),
               SizedBox(height: 50.0),
-              GridView.count(
-                crossAxisCount: 3,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisSpacing: 50.0,
-                mainAxisSpacing: 50.0,
-                children: List.generate(6, (index) {
-                  return Container(
-                    width: 300.0,
-                    height: 300.0,
-                    child: Card(
-                      color: Color.fromRGBO(255, 248, 232, 1),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: <Widget>[
-                          Expanded(
-                            child: Image.asset(
-                              'assets/org.png',
-                              fit: BoxFit.contain,
-                              width: 400,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(30.0),
-                            child: Text(
-                              'Organização ${index + 1}',
-                              style: TextStyle(
-                                fontSize: 23.0,
-                                fontWeight: FontWeight.bold,
+              StreamBuilder<List<Organization>>(
+                stream: _organizationService.getOrganizations(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    return Text('Erro: ${snapshot.error}');
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Text('Nenhuma organização encontrada.');
+                  }
+
+                  List<Organization> orgs = snapshot.data!;
+                  return GridView.count(
+                    crossAxisCount: 3,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    crossAxisSpacing: 50.0,
+                    mainAxisSpacing: 50.0,
+                    children: orgs.map((org) {
+                      return Container(
+                        width: 300.0,
+                        height: 300.0,
+                        child: Card(
+                          color: Color.fromRGBO(255, 248, 232, 1),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Expanded(
+                                child: Image.asset(
+                                  'assets/org.png',
+                                  fit: BoxFit.contain,
+                                  width: 400,
+                                ),
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          // Este botão é para cada card de organização
-                          Container(
-                            width: double.infinity,
-                            height: 50.0,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // Ação do botão Visualizar
-                              },
-                              child: Text('Visualizar', style: TextStyle(fontSize: 20.0, color: Colors.white)),
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(248, 175, 31, 1),
+                              Padding(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Text(
+                                  org.nome,
+                                  style: TextStyle(
+                                    fontSize: 23.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                            ),
+                              Container(
+                                width: double.infinity,
+                                height: 50.0,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Ação do botão Visualizar
+                                  },
+                                  child: Text('Visualizar', style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Color.fromRGBO(248, 175, 31, 1),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
+                        ),
+                      );
+                    }).toList(),
                   );
-                }),
+                },
               ),
               SizedBox(height: 50.0),
-              // Este é o botão para criar uma nova organização
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      // Ação do botão de criar organização
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CreateOrgScreen(),
+                        ),
+                      );
                     },
                     child: Text('+ Criar organização', style: TextStyle(fontSize: 20.0, color: Colors.white)),
                     style: ElevatedButton.styleFrom(
@@ -107,11 +127,4 @@ class _OrgsScreenState extends State<OrgsScreen> {
       ),
     );
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    title: 'Orgs Example',
-    home: OrgsScreen(),
-  ));
 }

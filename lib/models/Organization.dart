@@ -1,11 +1,11 @@
-class Organizacao {
+class Organization {
   String nome;
 
-  Organizacao({required this.nome});
+  Organization({required this.nome});
 
   // Método para criar uma organização a partir de um documento Firestore
-  factory Organizacao.fromDocument(Map<String, dynamic> doc) {
-    return Organizacao(
+  factory Organization.fromDocument(Map<String, dynamic> doc) {
+    return Organization(
       nome: doc['nome'],
     );
   }
