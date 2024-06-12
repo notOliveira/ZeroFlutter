@@ -7,8 +7,7 @@ class OrganizationService {
   // Adicione um método para adicionar uma nova organização ao Firestore
   Future<void> addOrganization(Organization organization) async {
     try {
-      // Adicione a organização ao Firestore com o nome do documento sendo o nome da organização
-      await _firestore.collection('organizations').doc(organization.nome).set(organization.toMap());      
+      await _firestore.collection('organizations').add(organization.toMap());
     } catch (e) {
       // Lide com os erros de adição de organização aqui
       print('Erro ao adicionar organização: $e');
