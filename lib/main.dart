@@ -8,7 +8,17 @@ import 'org_users.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: "AIzaSyCZb_wtlWDrabw9hyZjbYqUMPIMAb48p2E",
+      authDomain: "zeroflutter0.firebaseapp.com",
+      projectId: "zeroflutter0",
+      storageBucket: "zeroflutter0.appspot.com",
+      messagingSenderId: "75022678624",
+      appId: "1:75022678624:web:14bd1a9357cf366e9f2105",
+      measurementId: "G-68XE8KJ4KR",
+    ),
+  );
   runApp(const MyApp());
 }
 
@@ -63,13 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
+              const Text('You have pushed the button this many times:'),
+              Text('$_counter', style: Theme.of(context).textTheme.headlineMedium),
             ],
           ),
         ),
