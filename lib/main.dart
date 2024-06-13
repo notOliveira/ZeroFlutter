@@ -5,6 +5,7 @@ import 'segunda_tela.dart';
 import 'register.dart';
 import 'orgs.dart';
 import 'org_users.dart';
+import 'map_screen.dart';  // Import da tela do mapa
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         "/register": (context) => CadastroScreen(),
         "/orgs": (context) => OrgsScreen(),
         "/orgs/users": (context) => OrgUsersScreen(),
+        "/map": (context) => MapScreen(),  // Rota da tela do mapa
       },
       title: 'Flutter Demo',
       theme: ThemeData.light(),
